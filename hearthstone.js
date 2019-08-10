@@ -56,6 +56,7 @@ javascript:(() => {
             adventure: [],
             expansion: []
         };
+        filtered.packs['packs'] = 0;
         data.forEach(item => {
             if (item.title.toLowerCase().indexOf('arena') >= 0) {
                 item.price = 215;
@@ -63,10 +64,17 @@ javascript:(() => {
             } else if(item.price.toLowerCase().indexOf('gold') >= 0) {
                 item.price = parseInt(item.price.replace(',', ''));
                 filtered.gold.push(item);
-            } else if(item.title.toLowerCase().indexOf('wings') >= 0 || item.title.toLowerCase().indexOf('naxx') >= 0) {
+            } else if(item.title.toLowerCase().indexOf('wings') >= 0 
+                        || item.title.toLowerCase().indexOf('naxx') >= 0 
+                        || item.title.toLowerCase().indexOf('dalaran heist') >= 0) {
                 if (item.title.toLowerCase().indexOf('blackrock') >= 0) {
                     item.price = 2705;
-                } else if (item.title.toLowerCase().indexOf('frostwyrm lair') >= 0) {
+                } else if (item.title.toLowerCase().indexOf('frostwyrm lair') >= 0 
+                            || item.title.toLowerCase().indexOf('Construct Quarter') >= 0
+                            || item.title.toLowerCase().indexOf('Military Quarter') >= 0
+                            || item.title.toLowerCase().indexOf('Plague Quarter') >= 0
+                            || item.title.toLowerCase().indexOf('Arachnid Quarter') >= 0
+                          ) {
                     item.price = (6.99*1.0825)*100
                 } else {
                     item.price = 2164;
@@ -77,17 +85,25 @@ javascript:(() => {
                 if(item.title.toLowerCase().indexOf('mega') >= 0) item.price = 8659;
                 filtered.expansion.push(item);
             } else if(item.title.toLowerCase().indexOf('packs') >= 0) {
-                let price = parseInt(item.title.split(' ')[1]);
-                if (price > 0) {
-                    if (price === 2) item.price = 2.99;
-                    if (price === 7) item.price = 9.99;
-                    if (price === 15) item.price = 19.99;
-                    if (price === 40) item.price = 49.99;
-                    if (price === 60) item.price = 69.99;
+                let split = item.title.split(' ');
+                let packs = parseInt(item.title.split(' ')[1]);
+                if (packs > 0) {
+                    if (packs === 7) (item.price = 9.99);
+                    if (packs === 2) (item.price = 2.99);
+                    if (packs === 15) (item.price = 19.99);
+                    if (packs === 40) (item.price = 49.99);
+                    if (packs === 60) (item.price = 69.99);
                     item.price = (item.price * 1.0825)*100;
                 }
                 if(item.title.toLowerCase().indexOf('welcome bundle') >= 0) item.price = 540;
                 if(item.title.toLowerCase().indexOf('mammoth bundle') >= 0) item.price = (19.99*1.0825)*100;
+
+                split.forEach(word => {
+                    if (parseInt(word) > 0) {
+                        filtered.packs.packs += parseInt(word);
+                    }
+                });
+
                 filtered.packs.push(item);
             } else {
                 if (item.title.toLowerCase().indexOf('khadgar') >= 0) {
@@ -99,6 +115,7 @@ javascript:(() => {
             }
         });
         
+        filtered.packs.packs = Math.round(filtered.packs.packs);
         init_UI(filtered);
     }
 
@@ -135,7 +152,7 @@ javascript:(() => {
                         <td style="color:yellow">$${(data.arena.total/100).toFixed(2)}</td>
                     </tr>
                     <tr>
-                        <td>Packs</td>
+                        <td>Packs x <span style="font-weight:bold;">${data.packs.packs}</span></td>
                         <td style="color:yellow">$${(data.packs.total/100).toFixed(2)}</td>
                     </tr>
                     <tr>
