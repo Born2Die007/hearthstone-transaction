@@ -66,6 +66,8 @@ javascript:(() => {
             } else if(item.title.toLowerCase().indexOf('wings') >= 0) {
                 if (item.title.toLowerCase().indexOf('blackrock') >= 0) {
                     item.price = 2705;
+                } else if (item.title.toLowerCase().indexOf('frostwyrm lair') >= 0) {
+                    item.price = (6.99*1.0825)*100
                 } else {
                     item.price = 2164;
                 }
