@@ -63,7 +63,7 @@ javascript:(() => {
             } else if(item.price.toLowerCase().indexOf('gold') >= 0) {
                 item.price = parseInt(item.price.replace(',', ''));
                 filtered.gold.push(item);
-            } else if(item.title.toLowerCase().indexOf('wings') >= 0) {
+            } else if(item.title.toLowerCase().indexOf('wings') >= 0 || item.title.toLowerCase().indexOf('naxx') >= 0) {
                 if (item.title.toLowerCase().indexOf('blackrock') >= 0) {
                     item.price = 2705;
                 } else if (item.title.toLowerCase().indexOf('frostwyrm lair') >= 0) {
