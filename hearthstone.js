@@ -85,6 +85,7 @@ javascript:(() => {
                     item.price = (item.price * 1.0825)*100;
                 }
                 if(item.title.toLowerCase().indexOf('welcome bundle') >= 0) item.price = 540;
+                if(item.title.toLowerCase().indexOf('mammoth bundle') >= 0) item.price = (19.99*1.0825)*100;
                 filtered.packs.push(item);
             } else {
                 if (item.title.toLowerCase().indexOf('khadgar') >= 0) {
