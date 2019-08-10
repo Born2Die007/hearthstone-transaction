@@ -70,7 +70,7 @@ javascript:(() => {
                     item.price = 2164;
                 }
                 filtered.adventure.push(item);
-            } else if(item.title.toLowerCase().indexOf('pre-purchase') >= 0) {
+            } else if(item.title.toLowerCase().indexOf('pre-purchase') >= 0 || item.title.toLowerCase().indexOf('mega') >= 0) {
                 item.price = parseFloat(item.price.replace('$', '')) >= 0 ? parseFloat(item.price.replace('$', ''))*100 : 5411;
                 if(item.title.toLowerCase().indexOf('mega') >= 0) item.price = 8659;
                 filtered.expansion.push(item);
