@@ -97,7 +97,8 @@ javascript:(() => {
                 }
                 if(item.title.toLowerCase().indexOf('welcome bundle') >= 0) item.price = 540;
                 if(item.title.toLowerCase().indexOf('mammoth bundle') >= 0) item.price = (19.99*1.0825)*100;
-
+                if(item.title.toLowerCase().indexOf('multiple expansions') >= 0) item.price = 1080;
+                
                 split.forEach(word => {
                     if (parseInt(word) > 0) {
                         filtered.packs.packs += parseInt(word);
